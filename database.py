@@ -40,7 +40,6 @@ class NEODatabase:
         :param neos: A collection of `NearEarthObject`s.
         :param approaches: A collection of `CloseApproach`es.
         """
-        from pprint import pprint
         self._neos = neos
         self._approaches = approaches
 

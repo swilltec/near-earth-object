@@ -52,7 +52,6 @@ class NearEarthObject:
         
     def __str__(self):
         """Return `str(self)`."""
-        print(self.hazardous)
         danger = 'is potentially hazardous' if self.hazardous \
             else 'is not potentially hazardous'
         return( f"NEO {self.fullname} has a diameter of {self.diameter:.3f} km "
