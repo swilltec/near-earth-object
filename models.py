@@ -35,9 +35,9 @@ class NearEarthObject:
         """Create a new `NearEarthObject`.
         :param info: A dictionary of excess keyword arguments supplied to the constructor.
         """
-     
         self.designation = info.get('designation')
-        self.name = info.get('name')
+        self.name = info.get('name') if info.get('name') else \
+            None
         self.diameter = float(info.get('diameter', 'nan'))
         self.hazardous = True if info.get('hazardous', 'N') == 'Y' else False
 
@@ -85,7 +85,7 @@ class CloseApproach:
         self.time = cd_to_datetime(info.get('time'))
         self.distance = float(info.get('distance'))
         self.velocity = float(info.get('velocity'))
-        self.neo = None
+        self.neo = info.get('neo')
 
     @property
     def time_str(self):
