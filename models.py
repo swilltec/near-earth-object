@@ -61,6 +61,18 @@ class NearEarthObject:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return (f"NearEarthObject(designation={self.designation!r}, name={self.name!r}, "
                 f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})")
+    
+    
+    def serialize(self):
+        """Return a key, value mapping the of this object. """
+
+        serialized ={}
+        serialized['potentially_hazardous'] = self.hazardous
+        serialized['diameter_km'] = self.diameter
+        serialized['name'] = self.name if self.name else ''
+        serialized['designation'] = self.designation
+
+        return serialized
 
 
 class CloseApproach:
@@ -111,3 +123,16 @@ class CloseApproach:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return (f"CloseApproach(time={self.time_str!r}, distance={self.distance:.2f}, "
                 f"velocity={self.velocity:.2f}, neo={self.neo!r})")
+    
+    def serialize(self):
+        """Returns a dictionary mapping the of this object"""
+
+        serialized = {}
+
+
+        serialized['distance_au'] = self.distance
+        serialized['velocity_km_s'] = self.velocity
+        serialized['time'] = datetime_to_str(self.time)
+        serialized['datetime_utc'] = serialized.pop('time')
+        serialized['_designation'] = self._designation
+        return serialized

@@ -25,7 +25,25 @@ def write_to_csv(results, filename):
     :param filename: A Path-like object pointing to where the data should be saved.
     """
     fieldnames = ('datetime_utc', 'distance_au', 'velocity_km_s', 'designation', 'name', 'diameter_km', 'potentially_hazardous')
-    # TODO: Write the results to a CSV file, following the specification in the instructions.
+    
+
+
+    with open(filename, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow(fieldnames)
+
+        for ca in results:
+            time = ca.time_str
+            distance = ca.distance
+            velocity = ca.velocity
+            neo_diameter = str(ca.neo.diameter)
+            neo_name = ca.neo.name if ca.neo.diameter \
+                else ''
+            neo_hazardous = str(ca.neo.hazardous)
+            writer.writerow([time, distance, velocity,
+                            ca._designation, neo_name, neo_diameter,
+                            neo_hazardous])
+
 
 
 def write_to_json(results, filename):
@@ -39,4 +57,21 @@ def write_to_json(results, filename):
     :param results: An iterable of `CloseApproach` objects.
     :param filename: A Path-like object pointing to where the data should be saved.
     """
-    # TODO: Write the results to a JSON file, following the specification in the instructions.
+    
+    serialized_neos = []
+    serialized_cas = []
+
+    for ca in results:
+        serialized_cas.append(ca.serialize())
+        if ca.neo:
+            serialized_neos.append(ca.neo.serialize())
+
+
+    for ca in serialized_cas:
+        for neo in serialized_neos:
+            if neo['designation'] == ca['_designation']:
+                ca['neo'] = neo
+        del ca['_designation']
+
+    with open(filename, 'w') as f:
+        json.dump(serialized_cas, f, indent=2)
