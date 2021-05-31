@@ -1,8 +1,9 @@
-"""Check that an `NEODatabase` can be constructed and responds to inspect queries.
+"""Check that an `NEODatabase` can be constructed and responds to
+inspect queries.
 
-The `NEODatabase` constructor should cross-link NEOs and their close approaches,
-as well as prepare any additional metadata needed to support the `get_neo_by_*`
-methods.
+The `NEODatabase` constructor should cross-link NEOs and their
+close approaches, as well as prepare any additional metadata needed
+to support the `get_neo_by_*` methods.
 
 To run these tests from the project root, run:
 
@@ -36,22 +37,22 @@ class TestDatabase(unittest.TestCase):
         for approach in self.approaches:
             self.assertIsNotNone(approach.neo)
 
-    def test_database_construction_ensures_each_neo_has_an_approaches_attribute(self):
+    def test_database_construction_ensures_each_neo_has_an_approaches_attribute(self): # noqa
         for neo in self.neos:
             self.assertTrue(hasattr(neo, 'approaches'))
 
-    def test_database_construction_ensures_neos_collectively_exhaust_approaches(self):
+    def test_database_construction_ensures_neos_collectively_exhaust_approaches(self): # noqa
         approaches = set()
         for neo in self.neos:
             approaches.update(neo.approaches)
         self.assertEqual(approaches, set(self.approaches))
 
-    def test_database_construction_ensures_neos_mutually_exclude_approaches(self):
+    def test_database_construction_ensures_neos_mutually_exclude_approaches(self): # noqa
         seen = set()
         for neo in self.neos:
             for approach in neo.approaches:
                 if approach in seen:
-                    self.fail(f"{approach} appears in the approaches of multiple NEOs.")
+                    self.fail(f"{approach} appears in the approaches of multiple NEOs.") # noqa
                 seen.add(approach)
 
     def test_get_neo_by_designation(self):

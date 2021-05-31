@@ -34,20 +34,20 @@ class TestLimit(unittest.TestCase):
         self.assertEqual(tuple(limit(iter(self.iterable), 5)), (0, 1, 2, 3, 4))
 
     def test_limit_iterator_with_larger_limit(self):
-        self.assertEqual(tuple(limit(iter(self.iterable), 10)), (0, 1, 2, 3, 4))
+        self.assertEqual(tuple(limit(iter(self.iterable), 10)), (0, 1, 2, 3, 4)) # noqa
 
     def test_limit_iterator_without_limit(self):
         self.assertEqual(tuple(limit(iter(self.iterable))), (0, 1, 2, 3, 4))
-        self.assertEqual(tuple(limit(iter(self.iterable), 0)), (0, 1, 2, 3, 4))
-        self.assertEqual(tuple(limit(iter(self.iterable), None)), (0, 1, 2, 3, 4))
+        self.assertEqual(tuple(limit(iter(self.iterable), 0)), (0, 1, 2, 3, 4)) # noqa
+        self.assertEqual(tuple(limit(iter(self.iterable), None)), (0, 1, 2, 3, 4)) # noqa
 
     def test_limit_produces_an_iterable(self):
-        self.assertIsInstance(limit(self.iterable, 3), collections.abc.Iterable)
-        self.assertIsInstance(limit(self.iterable, 5), collections.abc.Iterable)
-        self.assertIsInstance(limit(self.iterable, 10), collections.abc.Iterable)
-        self.assertIsInstance(limit(self.iterable), collections.abc.Iterable)
-        self.assertIsInstance(limit(self.iterable, 0), collections.abc.Iterable)
-        self.assertIsInstance(limit(self.iterable, None), collections.abc.Iterable)
+        self.assertIsInstance(limit(self.iterable, 3), collections.abc.Iterable) # noqa
+        self.assertIsInstance(limit(self.iterable, 5), collections.abc.Iterable) # noqa
+        self.assertIsInstance(limit(self.iterable, 10), collections.abc.Iterable) # noqa
+        self.assertIsInstance(limit(self.iterable), collections.abc.Iterable) # noqa
+        self.assertIsInstance(limit(self.iterable, 0), collections.abc.Iterable) # noqa
+        self.assertIsInstance(limit(self.iterable, None), collections.abc.Iterable) # noqa
 
 
 if __name__ == '__main__':
