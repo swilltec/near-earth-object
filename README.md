@@ -1,6 +1,6 @@
 # Explore Close Approaches of Near-Earth Objects
 
-In this project, I used Python - and the skills developed in Udacity intermediate python nanodegree- to search for and explore close approaches of near-Earth objects (NEOs), using data from NASA/JPL's Center for Near Earth Object Studies.
+In this project, I used Python - and the skills developed to search for and explore close approaches of near-Earth objects (NEOs), using data from NASA/JPL's Center for Near Earth Object Studies.
 
 ## Overview
 
